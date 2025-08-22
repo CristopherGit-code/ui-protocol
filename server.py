@@ -94,9 +94,9 @@ async def agentic_chat_endpoint(input_data: RunAgentInput, request: Request):
                 ToolCallChunkEvent(
                     type=EventType.TOOL_CALL_CHUNK,
                     tool_call_id="1",
-                    tool_call_name="example_tool",
+                    tool_call_name="get_weather",
                     parent_message_id=message_id,
-                    delta="arguments and extra information"
+                    delta="Weather information:"
                 )
             )
 
