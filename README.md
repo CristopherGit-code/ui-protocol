@@ -29,5 +29,12 @@ This file has a tool created to retrieve real time weather information. The *rea
 5. Run the react app using ```npm run dev```
 6. Send messages from the client and wait for event responses.
 
-## Basic walkthrough
+## Copilotkit DEMO comparison
 
+[ui-protocol](ui-protocol) Folder containing a full tutorial project of AG-UI integration with full [Copilotkit front](https://docs.copilotkit.ai/)
+
+This project is using also OpenAI Sandbox model for the langGraph agent integration. In the particular [agent file](ui-protocol/protocol-ag-ui/agent/agent.py) is the setup for an agentic responses and also front / back tools binded to the model, making it able to control front components and visualization, but also, make external back calls.
+
+The [react application](ui-protocol/protocol-ag-ui/src/app/page.tsx) is integrating react components along with *Copilotkit* UI. Implements different functions to connect to the agent in the python server and receive the streaming responses.
+
+## Basic walkthrough
