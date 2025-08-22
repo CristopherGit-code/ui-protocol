@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AG-UI Client</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h2>Chat with Agent</h2>
+    <button id="sendBtn">Send Request</button>
+    <div id="output"></div>
+
+    <script>
+        const sendBtn = document.getElementById("sendBtn");
+        const output = document.getElementById("output");
+
+        sendBtn.addEventListener("click", async () => {
+            output.innerHTML = "🔌 Connecting...\n";
+
+            const inputData = {
+                threadId: "thread-123",
+                runId: "run-abc",
+                state: {},
+                messages: [
+                    {
+                        id: "1234",
+                        role: "user",
+                        content: "Hello!"
+                    }
+                ],
+                tools: [],
+                context: [
+                    { description: "session", value: "test-run" }
+                ],
+                forwardedProps: {}
+            };
+
+            const response = await fetch("http://localhost:8000/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "accept": "text/event-stream"
+                },
+                body: JSON.stringify(inputData),
+            });
+
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder("utf-8");
+            let buffer = "";
+
+            while (true) {
+                const { value, done } = await reader.read();
+                if (done) break;
+
+                buffer += decoder.decode(value, { stream: true });
+
+                // Split into events usinh new line SSE
+                const parts = buffer.split("\n\n");
+                buffer = parts.pop(); 
+
+                for (const part of parts) {
+                    if (part.startsWith("data:")) {
+                        try {
+                            const jsonStr = part.replace(/^data:\s*/, "");
+                            const event = JSON.parse(jsonStr);
+                            renderEvent(event);
+                        } catch (err) {
+                            console.error("Parse error", err, part);
+                        }
+                    }
+                }
+            }
+        });
+
+        function renderEvent(event) {
+            let div = document.createElement("div");
+            div.className = "event";
+
+            switch (event.type) {
+                case "RUN_STARTED":
+                    div.classList.add("run-started");
+                    div.textContent = `✅ Run started (thread ${event.threadId}, run ${event.runId})`;
+                    break;
+                case "TEXT_MESSAGE_CONTENT":
+                    div.classList.add("message");
+                    div.textContent = `💬 ${event.delta}`;
+                    break;
+                case "RUN_FINISHED":
+                    div.classList.add("run-finished");
+                    div.textContent = `🏁 Run finished (thread ${event.threadId}, run ${event.runId})`;
+                    break;
+                default:
+                    div.textContent = `📦 Unknown event: ${JSON.stringify(event)}`;
+            }
+
+            output.appendChild(div);
+            output.scrollTop = output.scrollHeight;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+[project]
+name = "ui-protocol"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "ag-ui-protocol>=0.1.8",
+    "dotenv>=0.9.9",
+    "envyaml>=1.10.211231",
+    "fastapi>=0.116.1",
+    "langchain-openai>=0.3.30",
+    "oci>=2.158.2",
+    "openai>=1.100.2",
+    "python-box>=7.3.2",
+    "uvicorn>=0.35.0",
+]

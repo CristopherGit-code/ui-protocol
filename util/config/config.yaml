@@ -1,0 +1,11 @@
+oci_client:
+  configProfile: "DEFAULT"
+  compartiment:  ${COMPARTIMENT}
+  endpoint:  ${ENDPOINT}
+  config_path:  ${CONFIG_PATH}
+  model_id: "cohere.command-r-08-2024"
+  max_tokens: 600
+  temperature: 0.8
+  freq_penalty: 0
+  top_p: 0.75
+  top_k: 0
