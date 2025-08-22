@@ -5,6 +5,8 @@
 
 Implementation of AG-UI server streaming events to front to generate UI components
 
+- ![Copilotkit tutorial image](walkthrough/copilotkit_demo_front.png) Image that shows the Copilotkit integration with the tutorial tools.
+
 ## Features
 
 - [server.py](server.py) Main server file that includes the streaming logic, integrates langgraph + OCI agent with a simple weather tool call.
@@ -17,7 +19,7 @@ This file has a tool created to retrieve real time weather information. The *rea
 
 ```handleEvent``` function classificates the events and generates some UI components depending on the event information from the server.
 
--[util](util) Folder containing the setup of the OCI agent with credentials
+- [util](util) Folder containing the setup of the OCI agent with credentials
 
 ## Setup
 
@@ -31,6 +33,8 @@ This file has a tool created to retrieve real time weather information. The *rea
 
 ## Copilotkit DEMO comparison
 
+- ![Custom event reader image](walkthrough/custom_event_demo.png) Image demonstrating the generation of UI component and raw event read.
+
 [ui-protocol](ui-protocol) Folder containing a full tutorial project of AG-UI integration with full [Copilotkit front](https://docs.copilotkit.ai/)
 
 This project is using also OpenAI Sandbox model for the langGraph agent integration. In the particular [agent file](ui-protocol/protocol-ag-ui/agent/agent.py) is the setup for an agentic responses and also front / back tools binded to the model, making it able to control front components and visualization, but also, make external back calls.
@@ -38,3 +42,6 @@ This project is using also OpenAI Sandbox model for the langGraph agent integrat
 The [react application](ui-protocol/protocol-ag-ui/src/app/page.tsx) is integrating react components along with *Copilotkit* UI. Implements different functions to connect to the agent in the python server and receive the streaming responses.
 
 ## Basic walkthrough
+
+- [Demo Video](walkthrough/AG-UI-demo.mp4) Demo video of the different front packages and comparison of the default Copilotkit with custom UI component reader
+- [Architecture](walkthrough/AG-UI-protocol-architecture.png) Basic architecture of the protocol and read event to generate the components.

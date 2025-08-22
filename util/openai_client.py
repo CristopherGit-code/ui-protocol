@@ -10,7 +10,7 @@ from util.config.config import Settings
 import requests, oci, httpx
 from oci.config import DEFAULT_PROFILE
 
-settings = Settings(r"C:\Users\Cristopher Hdz\Desktop\ag-ui\util\config\config.yaml")
+settings = Settings(r"C:\Users\Cristopher Hdz\Desktop\ui-protocol\util\config\config.yaml")
 
 class OciOpenAI(OpenAI):
     """

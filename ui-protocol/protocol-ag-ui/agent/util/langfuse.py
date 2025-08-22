@@ -18,7 +18,7 @@ class FuseConfig:
     def _init(self):
         if self._initialized:
             return
-        self._settings = Settings(r"C:\Users\Cristopher Hdz\Desktop\Test\ui-protocol\protocol-ag-ui\agent\util\config\config.yaml")   
+        self._settings = Settings(r"C:\Users\Cristopher Hdz\Desktop\ui-protocol\ui-protocol\protocol-ag-ui\agent\util\config\config.yaml")   
         """ VM host """
         Langfuse(
             public_key=self._settings.langfuse.SECRET_KUBER_KEY,
