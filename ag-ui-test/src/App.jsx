@@ -23,8 +23,8 @@ function App() {
     inputRef.current.value = "";
 
     const inputData = {
-      threadId: "thread-123",
-      runId: "run-abc",
+      threadId: "thread-1",
+      runId: "run-1",
       state: {},
       messages: [{ id: "1234", role: "user", content: userMessage }],
       tools: [],
@@ -90,10 +90,11 @@ function App() {
         break;
 
       case "TOOL_CALL_CHUNK":
+        const tool_data = JSON.parse(event.delta);
         setMessages((prev) => [
-            ...prev,
-            { sender: "ai", component: <WeatherCard location={event.delta} themeColor="rgb(34, 34, 34)" /> }
-          ]);
+          ...prev,
+          { sender: "ai", component: <WeatherCard props={tool_data} themeColor="rgb(34, 34, 34)" /> }
+        ]);
         break;
 
       case "RUN_FINISHED":
@@ -161,14 +162,27 @@ function TaskCard({ task }) {
 }
 
 // Example weather card component
-function WeatherCard({ location, themeColor }) {
+function WeatherCard({ props, themeColor }) {
   return (
-    <div
-      style={{ backgroundColor: themeColor }}
-      className="rounded-xl p-4 text-white shadow-lg"
-    >
-      <h4>{location}</h4>
-      <p>Current Weather: 70°, Clear skies</p>
+    <div className="tool-container">
+      <img
+        className="weather-icon"
+        src={props.icon}
+        alt={props.shortForecast}
+      />
+      <div className="weather-info">
+        <h4>{props.name}</h4>
+        <p>
+          {props.temperature}°{props.temperatureUnit}, {props.shortForecast}
+        </p>
+        <p>
+          <strong>Wind:</strong> {props.windSpeed} {props.windDirection}
+        </p>
+        <p>
+          <strong>Chance of Rain:</strong> {props.probabilityOfPrecipitation.value}%
+        </p>
+        {/* <p>{props.detailedForecast}</p> */}
+      </div>
     </div>
   );
 }

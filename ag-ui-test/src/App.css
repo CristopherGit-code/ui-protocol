@@ -24,7 +24,6 @@ h1 {
   text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
 }
 
-/* Chat container */
 .chat-container {
   width: 95%;
   height: 80%;
@@ -35,7 +34,6 @@ h1 {
   flex-direction: column;
 }
 
-/* Chat box */
 .chat-box {
   border-radius: 20px;
   padding: 1rem;
@@ -149,4 +147,48 @@ button:active {
 .chat-box::-webkit-scrollbar-thumb {
   background-color: rgba(0,0,0,0.2);
   border-radius: 4px;
+}
+
+.tool-container {
+  background-color: #f7fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(60,60,60,0.07);
+  padding: 20px 24px;
+  max-width: 380px;
+  margin: 20px auto;
+  font-family: "Segoe UI", Arial, sans-serif;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.tool-container .weather-icon {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  flex-shrink: 0;
+  border-radius: 50px;
+}
+
+.tool-container .weather-info {
+  flex: 1;
+}
+
+.tool-container h4 {
+  margin-top: 0;
+  margin-bottom: 9px;
+  font-size: 1.18em;
+  color: #2b6cb0;
+}
+
+.tool-container p {
+  margin: 6px 0;
+  font-size: 1em;
+  color: #222;
+}
+
+.tool-container strong {
+  color: #2b6cb0;
+  font-weight: 600;
 }

@@ -10,6 +10,7 @@ dependencies = [
     "envyaml>=1.10.211231",
     "fastapi>=0.116.1",
     "langchain-openai>=0.3.30",
+    "langgraph>=0.6.6",
     "oci>=2.158.2",
     "openai>=1.100.2",
     "python-box>=7.3.2",
